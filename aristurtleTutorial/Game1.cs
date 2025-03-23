@@ -7,6 +7,8 @@ namespace aristurtleTutorial;
 
 public class Game1 : Core
 {
+    //MonoGame logo texture
+    private Texture2D _logo;
     public Game1() :base("aristurtle Tutorial",1280,720,false)
     {
 
@@ -22,7 +24,8 @@ public class Game1 : Core
     protected override void LoadContent()
     {
 
-        // TODO: use this.Content to load your game content here
+        _logo = Content.Load<Texture2D>("images/MGlogo");
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -39,7 +42,51 @@ public class Game1 : Core
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        // The bounds of the icon within the texture.
+        Rectangle iconSourceRect = new Rectangle(0, 0, 128, 128);
+
+        // The bounds of the word mark within the texture.
+        Rectangle wordmarkSourceRect = new Rectangle(150, 34, 458, 58);
+
+        //Begin the sprite batch to prepare for rendering.
+        SpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack);
+
+        // Draw only the icon portion of the texture.
+        SpriteBatch.Draw(
+            _logo,              // texture
+            new Vector2(        // position
+                Window.ClientBounds.Width,
+                Window.ClientBounds.Height) * 0.5f,
+            iconSourceRect,     // sourceRectangle
+            Color.White,        // color
+            0.0f,               // rotation
+            new Vector2(        // origin
+                iconSourceRect.Width,
+                iconSourceRect.Height) * 0.5f,
+            1.0f,               // scale
+            SpriteEffects.None, // effects
+            1.0f                // layerDepth
+        );
+
+        // Draw only the word mark portion of the texture.
+        SpriteBatch.Draw(
+            _logo,              // texture
+            new Vector2(        // position
+              Window.ClientBounds.Width,
+              Window.ClientBounds.Height) * 0.5f,
+            wordmarkSourceRect, // sourceRectangle
+            Color.White,        // color
+            0.0f,               // rotation
+            new Vector2(        // origin
+              wordmarkSourceRect.Width,
+              wordmarkSourceRect.Height) * 0.5f,
+            1.0f,               // scale
+            SpriteEffects.None, // effects
+            0.0f                // layerDepth
+        );
+
+        SpriteBatch.End();
+
 
         base.Draw(gameTime);
     }
