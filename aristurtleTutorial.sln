@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aristurtleTutorial", "aristurtleTutorial\aristurtleTutorial.csproj", "{06135EA6-16F2-4737-8BFD-2E8D1219F744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGameLibrary", "MonoGameLibrary\MonoGameLibrary.csproj", "{D8899920-698E-480F-AB6D-4ECB84B84D62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{06135EA6-16F2-4737-8BFD-2E8D1219F744}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06135EA6-16F2-4737-8BFD-2E8D1219F744}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06135EA6-16F2-4737-8BFD-2E8D1219F744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8899920-698E-480F-AB6D-4ECB84B84D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8899920-698E-480F-AB6D-4ECB84B84D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8899920-698E-480F-AB6D-4ECB84B84D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8899920-698E-480F-AB6D-4ECB84B84D62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
