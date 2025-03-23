@@ -25,7 +25,8 @@ public class TextureRegion
     //Creates a new texture region using specified source teture
     public TextureRegion(Texture2D texture, int x, int y, int width, int height)
     {
-
+        Texture = texture;
+        SourceRectangle = new Rectangle(x, y, width, height);
     }
     public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color)
     {
