@@ -9,11 +9,11 @@
         <Region name="bat-3" x="0" y="200" width="40" height="40" />
     </Regions>
     <Animations>
-        <Animation name="slime" delay="200">
+        <Animation name="slime" delay="400">
             <Frame region="slime-1" />
             <Frame region="slime-2" />
         </Animation>
-        <Animation name="bat" delay="200">
+        <Animation name="bat" delay="100">
             <Frame region="bat-1" />
             <Frame region="bat-2" />
             <Frame region="bat-1" />
