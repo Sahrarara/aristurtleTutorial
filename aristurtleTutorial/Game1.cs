@@ -8,8 +8,8 @@ namespace aristurtleTutorial;
 
 public class Game1 : Core
 {
-    private TextureRegion _slime;
-    private TextureRegion _bat;
+    private Sprite _slime;
+    private Sprite _bat;
     public Game1() :base("aristurtle Tutorial",1280,720,false)
     {
 
@@ -27,9 +27,9 @@ public class Game1 : Core
         //load the atlas texture
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
-        _slime = atlas.GetRegion("slime");
+        _slime = atlas.CreateSprite("slime");
 
-        _bat = atlas.GetRegion("bat");
+        _bat = atlas.CreateSprite("bat");
 
         base.LoadContent();
     }
@@ -52,8 +52,8 @@ public class Game1 : Core
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
         //Draw Slime and bat texture region
-        _slime.Draw(SpriteBatch, Vector2.One, Color.White);
-        _bat.Draw(SpriteBatch, new Vector2(_slime.Width + 10, 0), Color.White);
+        _slime.Draw(SpriteBatch, Vector2.One);
+        _bat.Draw(SpriteBatch, new Vector2(_slime.Width + 10, 0));
 
         SpriteBatch.End();
 

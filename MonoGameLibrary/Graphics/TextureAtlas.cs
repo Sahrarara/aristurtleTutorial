@@ -89,5 +89,12 @@ public class TextureAtlas
             }
         }
     }
+    //creates a new sprite using the region from this texture atlas with the specified name.
+    //returns new Sprite using the texture region with the specified name "regionName"
+    public Sprite CreateSprite(string regionName)
+    {
+        TextureRegion region = GetRegion(regionName);
+        return new Sprite(region);
+    }
 
 }
