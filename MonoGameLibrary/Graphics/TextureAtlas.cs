@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -13,17 +14,20 @@ public class TextureAtlas
     private Dictionary<string, TextureRegion> _regions;
     //gets or sets the source texture represented by this texture atlas
     public Texture2D Texture { get; set; }
+    private Dictionary<string, Animation> _animations;
 
     //Creates a new texture atlas.
     public TextureAtlas()
     {
         _regions = new Dictionary<string, TextureRegion>();
+        _animations = new Dictionary<string, Animation>();
     }
     //Creates a new texture atlas instance using the given texture
     public TextureAtlas(Texture2D texture)
     {
         Texture = texture;
         _regions = new Dictionary<string, TextureRegion>();
+        _animations = new Dictionary<string, Animation>();
     }
     //creates a new region and adds it to this texture atlas
     //<param name="name">The name to give the texture region.</param>
@@ -85,6 +89,33 @@ public class TextureAtlas
                     }
                 }
 
+                var animationElements = root.Element("Animations")?.Elements("Animation");
+                if (animationElements != null)
+                {
+                    foreach (var animationElement in animationElements)
+                    {
+                        string name = animationElement.Attribute("name")?.Value;
+                        float delayInMilliseconds = float.Parse(animationElement.Attribute("delay")?.Value ?? "0");
+                        TimeSpan delay = TimeSpan.FromMilliseconds(delayInMilliseconds);
+
+                        List<TextureRegion> frames = new List<TextureRegion>();
+
+                        var frameElements = animationElement.Elements("Frame");
+
+                        if (frameElements != null)
+                        {
+                            foreach (var frameELement in frameElements)
+                            {
+                                string regionName = frameELement.Attribute("region").Value;
+                                TextureRegion region = atlas.GetRegion(regionName);
+                                frames.Add(region);
+                            }
+                        }
+                        Animation animation = new Animation(frames, delay);
+                        atlas.AddAnimation(name, animation);
+                    }
+                }
+
                 return atlas;
             }
         }
@@ -95,6 +126,25 @@ public class TextureAtlas
     {
         TextureRegion region = GetRegion(regionName);
         return new Sprite(region);
+    }
+    //adds the given animation to this texture atlas
+    public void AddAnimation(string animationName, Animation animation)
+    {
+        _animations.Add(animationName, animation);
+
+    }
+    public Animation GetAnimation(string animationName)
+    {
+        return _animations[animationName];
+    }
+    public bool RemoveAnimation(string animationName)
+    {
+        return _animations.Remove(animationName);
+    }
+    public AnimatedSprite CreateAnimatedSprite(string animationName)
+    {
+        Animation animation = GetAnimation(animationName);
+        return new AnimatedSprite(animation);
     }
 
 }

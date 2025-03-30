@@ -8,8 +8,8 @@ namespace aristurtleTutorial;
 
 public class Game1 : Core
 {
-    private Sprite _slime;
-    private Sprite _bat;
+    private AnimatedSprite _slime;
+    private AnimatedSprite _bat;
     public Game1() :base("aristurtle Tutorial",1280,720,false)
     {
 
@@ -27,9 +27,9 @@ public class Game1 : Core
         //load the atlas texture
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
-        _slime = atlas.CreateSprite("slime");
+        _slime = atlas.CreateAnimatedSprite("slime");
 
-        _bat = atlas.CreateSprite("bat");
+        _bat = atlas.CreateAnimatedSprite("bat");
 
         base.LoadContent();
     }
@@ -39,7 +39,9 @@ public class Game1 : Core
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        //Update the slime and bat animated sprite
+        _slime.Update(gameTime);
+        _bat.Update(gameTime);
 
         base.Update(gameTime);
     }
