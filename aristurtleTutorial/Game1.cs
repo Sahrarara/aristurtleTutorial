@@ -56,35 +56,6 @@ public class Game1 : Core
 
     private void CheckGamePadInput()
     {
-        KeyboardState keyboardState = Keyboard.GetState();
-
-        //if the left shift key is held down, the movement speed increases by 1.5
-        float speed = MOVEMENT_SPEED;
-        if (keyboardState.IsKeyDown(Keys.LeftShift))
-        {
-            speed *= 1.5f;
-        }
-
-        if (keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up))
-        {
-            _slimePosition.Y -= speed;
-        }
-        if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down))
-        {
-            _slimePosition.Y += speed;
-        }
-        if (keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left))
-        {
-            _slimePosition.X -= speed;
-        }
-        if (keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right))
-        {
-            _slimePosition.X += speed;
-        }
-    }
-
-    private void CheckKeyBoardInput()
-    {
         GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
         float speed = MOVEMENT_SPEED;
@@ -124,8 +95,35 @@ public class Game1 : Core
                 _slimePosition.X += speed;
             }
         }
+    }
 
+    private void CheckKeyBoardInput()
+    {
+        KeyboardState keyboardState = Keyboard.GetState();
 
+        //if the left shift key is held down, the movement speed increases by 1.5
+        float speed = MOVEMENT_SPEED;
+        if (keyboardState.IsKeyDown(Keys.LeftShift))
+        {
+            speed *= 1.5f;
+        }
+
+        if (keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up))
+        {
+            _slimePosition.Y -= speed;
+        }
+        if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down))
+        {
+            _slimePosition.Y += speed;
+        }
+        if (keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left))
+        {
+            _slimePosition.X -= speed;
+        }
+        if (keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right))
+        {
+            _slimePosition.X += speed;
+        }
     }
 
     protected override void Draw(GameTime gameTime)
